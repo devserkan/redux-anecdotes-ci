@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { voteAnecdote } from '../reducers/anecdoteReducer';
 import { setNotification } from '../reducers/notificationReducer';
-
+import { Anecdote } from './Anecdote';
 function getAnecdotes(state) {
   if (!state.filter) {
     return state.anecdotes;
@@ -32,16 +32,4 @@ export function AnecdoteList() {
       handleAnecdoteVote={() => vote(anecdote)}
     />
   ));
-}
-
-function Anecdote({ anecdote, handleAnecdoteVote }) {
-  return (
-    <div>
-      <div>{anecdote.content}</div>
-      <div>
-        has {anecdote.votes}
-        <button onClick={handleAnecdoteVote}>vote</button>
-      </div>
-    </div>
-  );
 }
