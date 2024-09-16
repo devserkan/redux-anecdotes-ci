@@ -39,8 +39,8 @@ app.patch('/api/anecdotes/:id', (req, res) => {
   res.json(anecdotes[anecdoteIndex]);
 });
 
-app.get('/version', (req, res) => {
-  res.send('2');
+app.get('/api/version', (req, res) => {
+  res.send('3');
 });
 
 app.get('*', (_req, res) => {
