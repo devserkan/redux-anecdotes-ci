@@ -14,10 +14,15 @@ jobs:
         with:
           node-version: '20'
       #   - uses: superfly/flyctl-actions/setup-flyctl@master
-      - name: Install dependencies and run checks for frontend
+      - name: Install dependencies for frontend
         working-directory: ./frontend
-        run: |
-          npm ci
-          npm run lint
-          npm run build
-          npm run test
+        run: npm ci
+      - name: Check style for frontend
+        working-directory: ./frontend
+        run: npm run lint
+      - name: Build for frontend
+        working-directory: ./frontend
+        run: npm run build
+      - name: Test for frontend
+        working-directory: ./frontend
+        run: npm run test
