@@ -16,6 +16,8 @@ jobs:
       #   - uses: superfly/flyctl-actions/setup-flyctl@master
       - name: Install dependencies for backend
         run: npm ci
+      - name: Lint backend
+        run: npm run lint:backend
       - name: Test backend
         run: npm run test:backend
       - name: Install dependencies for frontend

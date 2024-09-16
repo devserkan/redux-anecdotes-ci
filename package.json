@@ -6,6 +6,7 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "test:backend": "node --test",
+    "lint:backend": "eslint src/**/*.js",
     "start:frontend": "cd frontend && npm run dev",
     "install:frontend": "cd frontend && npm ci",
     "lint:frontend": "cd frontend && npm run lint",
@@ -23,8 +24,11 @@
     "uuid": "^10.0.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.10.0",
     "@playwright/test": "^1.47.1",
     "@types/node": "^22.5.5",
+    "eslint": "^9.10.0",
+    "globals": "^15.9.0",
     "nodemon": "^3.1.4",
     "supertest": "^7.0.0"
   }
