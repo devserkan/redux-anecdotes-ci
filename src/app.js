@@ -39,6 +39,10 @@ app.patch('/api/anecdotes/:id', (req, res) => {
   res.json(anecdotes[anecdoteIndex]);
 });
 
+app.get('/version', (req, res) => {
+  res.send('2');
+});
+
 app.get('*', (_req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
 });

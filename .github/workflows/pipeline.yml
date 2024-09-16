@@ -13,7 +13,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      #   - uses: superfly/flyctl-actions/setup-flyctl@master
+      - uses: superfly/flyctl-actions/setup-flyctl@master
       - name: Install dependencies for backend
         run: npm ci
       - name: Lint backend
@@ -38,3 +38,7 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
+      - name: Deploy app
+        run: flyctl deploy --remote-only
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
