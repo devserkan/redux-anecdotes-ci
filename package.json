@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node src/app.js",
-    "dev": "nodemon src/app.js",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test:backend": "node --test",
     "start:frontend": "cd frontend && npm run dev",
     "install:frontend": "cd frontend && npm ci",
     "lint:frontend": "cd frontend && npm run lint",
@@ -24,6 +25,7 @@
   "devDependencies": {
     "@playwright/test": "^1.47.1",
     "@types/node": "^22.5.5",
-    "nodemon": "^3.1.4"
+    "nodemon": "^3.1.4",
+    "supertest": "^7.0.0"
   }
 }
