@@ -49,6 +49,24 @@ jobs:
         run: flyctl deploy --remote-only
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+      - name: Notify Discord on success
+        if: ${{ success() && env.SHOULD_DEPLOY == 'true' }}
+        uses: stegzilla/discord-notify@v2
+        with:
+          title: redux-anecdotes-ci deployment succeeded!
+          message: "**${{ github.event.head_commit.message }}**\n**Creator:** ${{ github.event.head_commit.author.username }}\n${{ github.event.head_commit.url }}"
+          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
+          username: 'devserkan'
+          colour: '#1f883d'
+      - name: Notify Discord on failure
+        if: ${{ failure() && env.SHOULD_DEPLOY == 'true' }}
+        uses: stegzilla/discord-notify@v2
+        with:
+          title: redux-anecdotes-ci deployment failed!
+          message: "**${{ github.event.head_commit.message }}**\n**Creator:** ${{ github.event.head_commit.author.username }}\n${{ github.event.head_commit.url }}"
+          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
+          username: 'devserkan'
+          colour: '#d73a49'
   tag_release:
     if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip') }}
     needs: [simple_deployment_pipeline]
