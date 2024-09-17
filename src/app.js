@@ -40,7 +40,7 @@ app.patch('/api/anecdotes/:id', (req, res) => {
 });
 
 app.get('/api/version', (req, res) => {
-  res.send('4');
+  res.send('7');
 });
 
 app.get('*', (_req, res) => {
