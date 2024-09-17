@@ -1,0 +1,33 @@
+name: Health Check
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+jobs:
+  healthCheck:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Check the deployed service URL
+        uses: jtalk/url-health-check-action@v4
+        with:
+          url: https://redux-anecdotes-ci.fly.dev/
+          max-attempts: 3
+          retry-delay: 5s
+      - name: Notify Discord on success
+        if: ${{ success() }}
+        uses: stegzilla/discord-notify@v2
+        with:
+          title: 'Health Check'
+          message: redux-anecdotes-ci is healthy!
+          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
+          username: 'devserkan'
+          colour: '#1f883d'
+      - name: Notify Discord on failure
+        if: ${{ failure() }}
+        uses: stegzilla/discord-notify@v2
+        with:
+          title: 'Health Check'
+          message: redux-anecdotes-ci is unhealthy!
+          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
+          username: 'devserkan'
+          colour: '#d73a49'
