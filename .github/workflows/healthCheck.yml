@@ -1,8 +1,9 @@
 name: Health Check
 
 on:
-  schedule:
-    - cron: '0 0 * * *'
+  push:
+    branches:
+      - main
 jobs:
   healthCheck:
     runs-on: ubuntu-20.04
